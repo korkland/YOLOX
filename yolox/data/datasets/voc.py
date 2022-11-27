@@ -102,8 +102,8 @@ class VOCDetection(Dataset):
     def __init__(
         self,
         data_dir,
-        image_sets=[("2007", "trainval"), ("2012", "trainval")],
-        img_size=(416, 416),
+        image_sets=[("2007", "trainval")],
+        img_size=(640, 640),
         preproc=None,
         target_transform=AnnotationTransform(),
         dataset_name="VOC0712",
