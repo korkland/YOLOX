@@ -1,8 +1,13 @@
 import os
+import sys
 from lxml import etree
 
 
-root_dir = "/home/yz9qvs/YOLOX/datasets/VOCdevkit/VOC2007/Annotations/"
+if len(sys.argv) < 2:
+    print("no directory specified, please input target directory")
+    exit()
+
+root_dir = sys.argv[1]
 
 xml = os.listdir(root_dir)
 num = len(xml)

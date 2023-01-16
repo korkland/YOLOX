@@ -1,4 +1,5 @@
 import os
+import sys
 from lxml import etree
 
 '''
@@ -7,16 +8,14 @@ In addition it will move labels files that are diff than 'Crack' and 'Pothole' t
 Input: directory - contains Annotations (.xml) and JPEGImages (.jpg)
 '''
 
-# if len(sys.argv) < 2:
-#     print("no directory specified, please input target directory")
-#     exit()
+if len(sys.argv) < 2:
+    print("no directory specified, please input target directory")
+    exit()
 
-# root_path = sys.argv[1]
-# if not os.path.exists(root_path):
-#     print("cannot find such directory: " + root_path)
-#     exit()
-
-root_path = '/home/yz9qvs/pothole_dataset/RDD/United_States/train'
+root_path = sys.argv[1]
+if not os.path.exists(root_path):
+    print("cannot find such directory: " + root_path)
+    exit()
 
 xml_file_path = root_path + '/annotations/xmls/'
 if not os.path.exists(xml_file_path):

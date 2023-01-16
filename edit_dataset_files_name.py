@@ -1,10 +1,12 @@
-from PIL import Image
 import os, sys
-import glob
 from lxml import etree
 
-root_dir = "/home/yz9qvs/pothole_dataset/Roboflow-Pavement-Surface/train/"
-prefix = 'Pavement_'
+if len(sys.argv) < 3:
+    print("no directory specified, please input target directory")
+    exit()
+
+root_dir = sys.argv[1]
+prefix = sys.argv[2]
 
 xml_path = root_dir + "xml/"
 xml = os.listdir(xml_path)

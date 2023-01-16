@@ -2,14 +2,13 @@ import os
 import random
 import sys
 import shutil
-from pathlib import Path
 
-# if len(sys.argv) < 2:
-#     print("no directory specified, please input target directory")
-#     exit()
+if len(sys.argv) < 2:
+    print("no directory specified, please input target directory")
+    exit()
 
-# root_path = sys.argv[1]
-root_path = "/home/yz9qvs/YOLOX/datasets_no_gate/VOCdevkit/VOC2007"
+root_path = sys.argv[1]
+# root_path = "~/YOLOX/datasets/VOCdevkit/VOC2007"
 if not os.path.exists(root_path):
     print("cannot find such directory: " + root_path)
     exit()
