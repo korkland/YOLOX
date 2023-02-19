@@ -19,18 +19,20 @@ if not os.path.exists(output_dir):
     print("cannot find such directory: " + output_dir)
     exit()
 
-if root_dir == output_dir:
-    print("input dir and output dir are the same, exit")
-    exit()
-
 crop_size = 640
 for filename in os.listdir(root_dir):
-    img = cv2.imread(root_dir + filename)
+    img = cv2.imread(os.path.join(root_dir, filename))
+    if img is None:
+        print(filename, "image is empty, SKIP!")
+        continue
     imgH = img.shape[0]
     imgW = img.shape[1]
-    if imgH > crop_size or imgW > crop_size:
-        print(filename, "contain resolution higher than", crop_size, "ignore!")
+    if imgH < crop_size or imgW < crop_size:
+        print(filename, "contain resolution lower than", crop_size, "ignore!")
+        continue
+    if imgW == crop_size and imgW == crop_size:
+        print(filename, "already in the desired resolution:", crop_size)
         continue
     offSetX = int((imgW - crop_size)/2)
     img = img[imgH - crop_size:imgH, offSetX:offSetX + crop_size, :]
-    cv2.imwrite(output_dir + filename, img)
+    cv2.imwrite(os.path.join(root_dir, filename), img)

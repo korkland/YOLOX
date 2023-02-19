@@ -22,6 +22,10 @@ class Exp(MyExp):
         self.hsv_prob = 1.0
         self.flip_prob = 0.5
 
+        self.max_epoch = 350
+        self.no_aug_epochs = 100
+        self.enable_mixup = True
+
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
 
     def get_data_loader(self, batch_size, is_distributed, no_aug=False, cache_img=False):

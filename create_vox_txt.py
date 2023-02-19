@@ -8,7 +8,6 @@ if len(sys.argv) < 2:
     exit()
 
 root_path = sys.argv[1]
-# root_path = "~/YOLOX/datasets/VOCdevkit/VOC2007"
 if not os.path.exists(root_path):
     print("cannot find such directory: " + root_path)
     exit()
@@ -31,9 +30,9 @@ txtsavepath = root_path + '/ImageSets/Main'
 if not os.path.exists(txtsavepath):
     os.makedirs(txtsavepath)
 
-train_percent = 0.85
-total_xml = os.listdir(xmlfilepath)
-num = len(total_xml)
+train_percent = 0.9
+total_imgs = os.listdir(jpgfilepath)
+num = len(total_imgs)
 list = range(num)
 tr = int(num * train_percent)
 train_idxs = random.sample(list, tr)
@@ -45,12 +44,12 @@ ftrain = open(txtsavepath + '/train.txt', 'w')
 fvalid = open(txtsavepath + '/valid.txt', 'w')
 
 for i in list:
-    name = total_xml[i][:-4] + '\n'
+    name = total_imgs[i][:-4] + '\n'
     if i in train_idxs or 'NoLabel' in name:
         ftrain.write(name)
     else:
         fvalid.write(name)
-        shutil.copyfile(jpgfilepath + total_xml[i][:-4] + ".jpg", valid_copy_path + total_xml[i][:-4] + ".jpg")
+        shutil.copyfile(jpgfilepath + total_imgs[i], valid_copy_path + total_imgs[i])
         
 
 ftrain.close()
